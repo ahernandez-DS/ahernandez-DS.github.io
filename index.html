@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-MOVIL · Solicitud de Crédito</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- ============ HEADER ============ -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn" title="Regresar">‹</button>
+        <span class="brand">C-MOVIL</span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="pill pill-primary">
+          <span class="pill-icon"></span> Solicitud de Crédito
+        </button>
+        <button class="pill pill-ghost">Documentos del Cliente</button>
+        <button class="pill pill-ghost">Carátula de Comité</button>
+        <button class="pill pill-ghost">Comentarios</button>
+
+        <span class="user-chip"> 1 Usuario</span>
+
+        <div class="folio-chip">
+          <span class="folio-label">Folio: <strong>10029</strong></span>
+          <span class="folio-name">NICOLAS RUIZ JIMENEZ</span>
+          <span class="folio-rfc">RUJN7010091V5</span>
+        </div>
+
+        <button class="icon-btn" title="Más opciones">⋮⋮</button>
+      </div>
+    </header>
+
+    <!-- ============ TABS ============ -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="dictamen" onclick="document.getElementById('dictamen').hidden=false; document.getElementById('tipoActa').hidden=true; document.getElementById('generarActa').hidden=true; document.getElementById('historial').hidden=false
+        ;document.getElementById('dictamen').focus();">Dictamen</button>
+      <button class="tab" data-tab="dictamen-quash">Dictamen Quash</button>
+      <button class="tab" data-tab="receptora" onclick="menuActaComite()">Acta de Comite</button>
+      <button class="pill pill-primary" style="align-self: center;" id="generarActa" data-tab="generarActa"
+        onclick="alert('Generando Acta')" hidden>Generar Acta</button>
+    </nav>
+
+    <!-- ============ BODY ============ -->
+    <div class="body-grid">
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="content">
+        <!-- ---- Selector Acta Menor o Mayor ---- -->
+        <section class="card" id="tipoActa" hidden>
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Acta de Comité</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Tipo de Acta</label>
+                <div style="display: flex; gap: 24px; padding-top: 8px;">
+                  <label class="checkbox-label"
+                    style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main);">
+                    <input type="radio" id="actaMenor" name="tipoActaOpcion"
+                      style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);">
+                    ACTA MENOR
+                  </label>
+                  <label class="checkbox-label"
+                    style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main);">
+                    <input type="radio" id="actaMayor" name="tipoActaOpcion"
+                      style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);">
+                    ACTA MAYOR
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Firmas de autorización ---- -->
+        <section class="card" id="firmas">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Firmas de Autorización</h2>
+          </div>
+
+          <div class="card-body">
+            <div class="field-grid cols-3">
+              <!-- Vocal de comité -->
+              <div class="field">
+                <label>Vocal de Comité</label>
+                <input type="text" class="input-locked" value="José Luis Solorzano" readonly>
+              </div>
+
+              <!-- Presidente -->
+              <div class="field">
+                <label>Presidente</label>
+                <select id="presidenteTipo" class="select">
+                  <option value="titular">Titular</option>
+                  <option value="suplente">Suplente</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>&nbsp;</label>
+                <select id="presidenteNombre" class="select"></select>
+              </div>
+
+              <!-- Secretaria -->
+              <div class="field">
+                <label>Secretaria</label>
+                <select id="secretariaTipo" class="select">
+                  <option value="titular">Titular</option>
+                  <option value="suplente">Suplente</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>&nbsp;</label>
+                <select id="secretariaNombre" class="select"></select>
+              </div>
+              <div></div>
+
+              <!-- Checkboxes de Activación (debajo de secretaria) -->
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input type="checkbox" id="requiereFirmaEspecial"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);">
+                  ¿Requiere Firma Especial?
+                </label>
+              </div>
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input type="checkbox" id="requiereFirmaExtraordinaria"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);">
+                  ¿Requiere Firma Extraordinaria?
+                </label>
+              </div>
+              <div></div>
+
+              <!-- Firma Especial -->
+              <div class="field" id="wrapperFirmaEspecial" style="display: none;">
+                <label>Firma Especial</label>
+                <input type="text" class="input-locked" id="firmaEspecial" value="VICTOR MANUEL COUTIÑO ALBORES"
+                  readonly>
+              </div>
+
+              <!-- Firma Extraordinaria -->
+              <div class="field" id="wrapperFirmaExtraordinaria" style="display: none;">
+                <label>Firma Extraordinaria</label>
+                <select id="firmaExtraordinaria" class="select">
+                  <option value="">Seleccione...</option>
+                  <option value="DANIEL TREJO DOMÍNGUEZ">DANIEL TREJO DOMÍNGUEZ</option>
+                  <option value="LIZZET ALONDRA BORGES GARCIA">LIZZET ALONDRA BORGES GARCIA</option>
+                  <option value="JOSÉ AMIR ALFARO PANIAGUA">JOSÉ AMIR ALFARO PANIAGUA</option>
+                </select>
+              </div>
+              <div id="wrapperFirmaVacio" style="display: none;"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Dictamen de comité de crédito ---- -->
+        <section class="card" id="dictamen">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Resolución de Comité de Crédito</h2>
+          </div>
+
+          <div class="card-body">
+            <div class="field-grid cols-3">
+              <div class="field">
+                <label>Resolución</label>
+                <select id="autorizacion" class="select select-status">
+                  <option value="">Seleccione...</option>
+                  <option value="autorizado">Autorizado</option>
+                  <option value="observado">Observado</option>
+                  <option value="rechazado">Rechazado</option>
+                </select>
+              </div>
+
+              <div class="field" id="wrapperFechaAprobacion">
+                <label>Fecha de Aprobación</label>
+                <input type="text" id="fechaAprobacion" class="input-locked" readonly placeholder="—">
+              </div>
+
+              <div class="field">
+                <label>Última Modificación</label>
+                <input type="text" id="ultimaModificacion" class="input-locked" readonly>
+              </div>
+
+              <div class="field">
+                <label>Monto Aprobado</label>
+                <div class="input-prefix">
+                  <span>$</span>
+                  <input type="number" id="montoAprobado" class="input" placeholder="0.00" min="0" step="0.01">
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Plazo</label>
+                <div class="input-suffix">
+                  <input type="number" id="plazo" class="input" placeholder="0" min="0" step="1">
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Tasa</label>
+                <div class="input-suffix">
+                  <input type="number" id="tasa" class="input" placeholder="0.00" min="0" step="0.01">
+                  <span>%</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Periodicidad</label>
+                <select id="nivelRiesgo" class="select">
+                  <option value="">Seleccione...</option>
+                  <option value="bajo">28 dias</option>
+                  <option value="medio">Semanal</option>
+                  <option value="alto">Catorcenal</option>
+                  <option value="alto">Quincenal</option>
+                  <option value="alto">Mensual</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Nivel de Riesgo</label>
+                <select id="nivelRiesgo" class="select">
+                  <option value="">Seleccione...</option>
+                  <option value="bajo">Bajo</option>
+                  <option value="medio">Medio</option>
+                  <option value="alto">Alto</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Fecha de Resolución</label>
+                <input type="text" id="fechaResolucion" class="input-locked" readonly>
+              </div>
+
+              <div class="field span-2">
+                <label>&nbsp;</label>
+                <div></div>
+              </div>
+
+              <div class="field span-3" id="wrapperResolucionPredefinida" style="display: none;">
+                <label>Plantilla de Resolución (Opcional)</label>
+                <select id="resolucionPredefinida" class="select">
+                  <option value="" disabled selected>Seleccione una plantilla...</option>
+                </select>
+              </div>
+
+              <div class="field span-3" id="textoResolucion">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <label style="margin-bottom: 0;">Resolución de Comité</label>
+                  <button type="button" id="btnLimpiarResolucion" class="pill pill-ghost"
+                    style="padding: 4px 12px; font-size: 11px;">Limpiar</button>
+                </div>
+                <textarea id="resolucionComite" class="textarea" rows="4"
+                  placeholder="Escriba la resolución del comité de crédito..."></textarea>
+              </div>
+            </div>
+
+            <div class="actions-row">
+              <button class="btn-save" id="guardarResolucion">Guardar Resolución</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Historial de Créditos ---- -->
+        <section class="card" id="historial">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Historial de Créditos</h2>
+          </div>
+
+          <div class="card-body">
+            <!-- Tabla de créditos -->
+            <div class="hc-table-wrap">
+              <table class="hc-table">
+                <thead>
+                  <tr>
+                    <th>Otorgante</th>
+                    <th>Tipo</th>
+                    <th>Saldo Actual</th>
+                    <th>Saldo Vencido</th>
+                    <th>Pago Actual</th>
+                    <th>Último Pago</th>
+                    <th>Frecuencia</th>
+                    <th>Monto a Pagar</th>
+                  </tr>
+                </thead>
+                <tbody id="hcTableBody">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Totales -->
+            <div class="hc-totals">
+              <div class="hc-total-left">
+                Total Saldo Actual: <strong id="hcTotalSaldoActual" class="hc-amount-green">$0.00</strong>
+              </div>
+              <div class="hc-total-right">
+                Total Saldo Vencido: <strong id="hcTotalSaldoVencido" class="hc-amount-red">$0.00</strong>
+              </div>
+            </div>
+
+            <!-- Pagos por frecuencia -->
+            <div class="hc-freq">
+              <div class="hc-freq-title">Total de Pagos por Frecuencia</div>
+              <div id="hcFreqList" class="hc-freq-list">
+                <!-- Filas generadas por JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ===== STAGE SIDEBAR ===== -->
+      <aside class="stages">
+        <button class="stage-btn">Solicitud y Asignación</button>
+        <button class="stage-btn">Análisis</button>
+        <button class="stage-btn stage-active">Decisiones</button>
+        <button class="stage-btn">Solventación</button>
+        <button class="stage-btn">Análisis de Solventación</button>
+        <button class="stage-btn">Carga de Documentos</button>
+        <button class="stage-btn">Aplicación de Pagos</button>
+        <button class="stage-btn">Registro de Garantía y Otros</button>
+        <button class="stage-btn">Mesa de Control</button>
+        <button class="stage-btn">Mesa de Control (Área Comercial)</button>
+      </aside>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
