@@ -1194,6 +1194,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  async function obtenerUDIS() {
+    const url = "https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP68257/datos/oportuno";
+    const bmxToken1 = "375af50120fd1b72ee7ff9c8ffd78fba11ef91f1990aa1a01796d92f6cb2c998";
+
+    try {
+      let response;
+      try {
+        // Intento directo (puede fallar por CORS si se abre desde file://)
+        response = await fetch(url, {
+          headers: { "Bmx-Token": bmxToken1, "Accept": "application/json" }
+        });
+      } catch (err) {
+        console.warn("Fallo por CORS. Intentando con proxy...");
+        // Fallback a proxy público CORS
+        const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(url);
+        response = await fetch(proxyUrl, {
+          headers: { "Bmx-Token": bmxToken1, "Accept": "application/json" }
+        });
+      }
+
+      if (!response.ok) {
+        throw new Error("HTTP error " + response.status);
+      }
+
+      const data = await response.json();
+      const valorUdi = data.bmx.series[0].datos[0].dato;
+      console.log("Valor de UDI actual:", valorUdi);
+      return valorUdi;
+
+    } catch (error) {
+      console.error("Error al obtener la UDI:", error);
+      return null;
+    }
+  }
+
   /* ---------------------------------------------------------
      11. FUNCIÓN PARA MOSTRAR APLICACIÓN DE PAGOS
   --------------------------------------------------------- */
@@ -1268,5 +1303,55 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.mostrarDictamen();
+  let currentUdiValue = 0;
+
+  function calcularMontoUdis() {
+    const montoAprobadoInput = document.getElementById('montoAprobado');
+    const montoUdisInput = document.getElementById('montoUdis');
+    const engancheRecibirInput = document.getElementById('engancheRecibir');
+    const engancheUdisInput = document.getElementById('engancheUdis');
+
+    if (currentUdiValue > 0) {
+      if (montoAprobadoInput && montoUdisInput) {
+        const monto = parseFloat(montoAprobadoInput.value) || 0;
+        const totalUdis = monto / currentUdiValue;
+        montoUdisInput.value = totalUdis.toLocaleString('en-US', { minimumFractionDigits: 5, maximumFractionDigits: 5 });
+      }
+      
+      if (engancheRecibirInput && engancheUdisInput) {
+        const enganche = parseFloat(engancheRecibirInput.value) || 0;
+        const totalEngancheUdis = enganche / currentUdiValue;
+        engancheUdisInput.value = totalEngancheUdis.toLocaleString('en-US', { minimumFractionDigits: 5, maximumFractionDigits: 5 });
+      }
+    }
+  }
+
+  const inputMontoAprobado = document.getElementById('montoAprobado');
+  const inputEngancheRecibir = document.getElementById('engancheRecibir');
+  const inputEngancheUdis = document.getElementById('engancheUdis');
+  if (inputMontoAprobado) {
+    inputMontoAprobado.addEventListener('input', calcularMontoUdis);
+  }
+  if (inputEngancheRecibir) {
+    inputEngancheRecibir.addEventListener('input', calcularMontoUdis);
+  }
+  if (inputEngancheUdis) {
+    inputEngancheUdis.addEventListener('input', calcularMontoUdis);
+  }
+
+  obtenerUDIS().then(udi => {
+    const labelUdi = document.getElementById('resultado-udi');
+    const inputUdi = document.getElementById('input-udi');
+    if (udi) {
+      console.log("UDI Actual:", udi);
+      labelUdi.textContent = udi;
+      if (inputUdi) inputUdi.value = udi;
+      currentUdiValue = parseFloat(udi);
+      calcularMontoUdis();
+    } else {
+      console.log("No se pudo obtener la UDI");
+      labelUdi.textContent = "No se pudo obtener la UDI";
+    }
+  });
 
 });

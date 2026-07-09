@@ -368,6 +368,15 @@
                             </div>
 
                             <div class="field">
+                                <label>Enganche A Recibir</label>
+                                <div class="input-prefix">
+                                    <span>$</span>
+                                    <input type="number" id="engancheRecibir" class="input" placeholder="0.00" min="0"
+                                        step="0.01">
+                                </div>
+                            </div>
+
+                            <div class="field">
                                 <label>Plazo</label>
                                 <div class="input-suffix">
                                     <input type="number" id="plazo" class="input" placeholder="0" min="0" step="1">
@@ -414,6 +423,26 @@
                             <div class="field">
                                 <label>Fecha de Resolución</label>
                                 <input type="text" id="fechaResolucion" class="input-locked" readonly>
+                            </div>
+
+                            <div class="field">
+                                <label>Monto Aprobado en UDIS</label>
+
+                                <input type="text" id="montoUdis" class="input" placeholder="0" readonly>
+
+                            </div>
+
+                            <div class="field">
+                                <label>Enganche en UDIS</label>
+                                <input type="text" id="engancheUdis" class="input" placeholder="0" readonly>
+                            </div>
+
+                            <div class="field">
+                                <label>Valor de UDI</label>
+
+                                <input type="text" id="input-udi" class="input" placeholder="0" readonly>
+                                <span id="resultado-udi" class="input-suffix-text">Consultando...</span>
+
                             </div>
 
                             <div class="field span-2">
