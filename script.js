@@ -1344,7 +1344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputUdi = document.getElementById('input-udi');
     if (udi) {
       console.log("UDI Actual:", udi);
-      labelUdi.textContent = udi;
+      labelUdi.textContent = 'La udi actual es: ' + udi;
       if (inputUdi) inputUdi.value = udi;
       currentUdiValue = parseFloat(udi);
       calcularMontoUdis();
