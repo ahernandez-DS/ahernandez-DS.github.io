@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Documentos Cliente y Aval(es) — en el orden requerido
   const MC_DOCS_CLIENTE = [
-    { id: 'c01', nombre: 'INE', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 'c01', nombre: 'Identificacion Oficial', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
     { id: 'c02', nombre: 'CURP', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
     { id: 'c03', nombre: 'RFC', archivo: '', verificado: false, comentario: '', opcional: false },
     { id: 'c04', nombre: 'Acta de Nacimiento', archivo: '', verificado: false, comentario: '', opcional: false },
@@ -72,42 +72,65 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'c10', nombre: 'Fotos de la Actividad', archivo: '', verificado: false, comentario: '', opcional: false },
     { id: 'c11', nombre: 'Comprobante de Ingresos', archivo: '', verificado: false, comentario: '', opcional: false },
     { id: 'c12', nombre: 'Autorización de Consulta de Buró', archivo: './AUTH_BURO_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'c13', nombre: 'Carta de Excepción a la Norma', archivo: '', verificado: false, comentario: '', opcional: false }
+    { id: 'c13', nombre: 'Carta de Excepción a la Norma', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c14', nombre: 'Enganche', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c15', nombre: 'Garantia Liquida', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c16', nombre: 'Comisión por Apertura', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c17', nombre: 'Co Financiamiento', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c18', nombre: 'Complemento de Enganche', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c19', nombre: 'Garantia Liquida Enganche Diferido', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c20', nombre: 'Factura', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c21', nombre: 'Carta Factura', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c22', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'c23', nombre: 'Enganche GPS', archivo: '', verificado: false, comentario: '', opcional: false }
   ];
 
   const MC_DOCS_SOLIDARIO = [
-    { id: 's01', nombre: 'INE', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's02', nombre: 'CURP', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's03', nombre: 'RFC', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's04', nombre: 'Acta de Nacimiento', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's05', nombre: 'Comprobante de Domicilio', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's06', nombre: 'Comprobante de Domicilio Alterno', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's07', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's08', nombre: 'Arraigo', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's09', nombre: 'Fotos del Domicilio', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's10', nombre: 'Fotos de la Actividad', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's11', nombre: 'Comprobante de Ingresos', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's12', nombre: 'Autorización de Consulta de Buró', archivo: './AUTH_BURO_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's13', nombre: 'Carta de Excepción a la Norma', archivo: '', verificado: false, comentario: '', opcional: false }
+    { id: 's01', nombre: 'Identificacion Oficial Aval', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 's02', nombre: 'CURP Aval', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 's03', nombre: 'RFC Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's04', nombre: 'Acta nacimiento aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's05', nombre: 'Comprobante domicilio aval', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 's06', nombre: 'Comprobante de Ingresos Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's07', nombre: 'Garantia Liquida Enganche Diferido', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's08', nombre: 'Factura Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's09', nombre: 'Carta Factura Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's10', nombre: 'Permiso Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's11', nombre: 'Enganche GPS Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's12', nombre: 'Comprobante Domicilio Alterno Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's13', nombre: 'Arraigo Domiciliar Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's14', nombre: 'Fotos del Domicilio Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's15', nombre: 'Fotos de la Actividad Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's16', nombre: 'Comprobante de Ingresos Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 's17', nombre: 'Otros Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false }
   ];
 
   const MC_DOCS_GARANTE = [
-    { id: 'a01', nombre: 'INE', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a02', nombre: 'CURP', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a03', nombre: 'RFC', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a04', nombre: 'Acta de Nacimiento', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a05', nombre: 'Comprobante de Domicilio', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a06', nombre: 'Comprobante de Domicilio Alterno', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a07', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a08', nombre: 'Arraigo', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a09', nombre: 'Fotos del Domicilio', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a10', nombre: 'Fotos de la Actividad', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a11', nombre: 'Comprobante de Ingresos', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a12', nombre: 'Autorización de Consulta de Buró', archivo: './AUTH_BURO_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a13', nombre: 'Carta de Excepción a la Norma', archivo: '', verificado: false, comentario: '', opcional: false }
+    { id: 'a01', nombre: 'Identificacion oficial garante', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 'a02', nombre: 'CURP garante', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 'a03', nombre: 'RFC garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a04', nombre: 'Acta nacimiento garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a05', nombre: 'Enganche Garante', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
+    { id: 'a06', nombre: 'Garantia Liquida Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a07', nombre: 'Comisión por Apertura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a08', nombre: 'Co Financiamiento Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a09', nombre: 'Complemento de Enganche Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a10', nombre: 'Garantia Liquida Enganche Diferido Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a11', nombre: 'Factura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a12', nombre: 'Carta Factura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a13', nombre: 'Permiso Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a14', nombre: 'Enganche GPS Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a15', nombre: 'Comprobante Domicilio Alterno Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a16', nombre: 'Arraigo Domiciliar Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a17', nombre: 'Fotos del Domicilio Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a18', nombre: 'Fotos de la Actividad Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a19', nombre: 'Comprobante de Ingresos Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+    { id: 'a20', nombre: 'Otros Garante', archivo: '', verificado: false, comentario: '', opcional: false }
   ];
 
   // Documentos de Garantías — en el orden requerido
+  // (Este array lo mantuve sin modificaciones porque sus atributos base difieren
+  // de DOCUMENTOS_ADICIONALES, que contiene 36 elementos de tipo distinto).
   const MC_DOCS_GARANTIAS = [
     { id: 'g01', nombre: 'Factura', archivo: '', verificado: false, comentario: '', opcional: false },
     { id: 'g02', nombre: 'Carta Factura', archivo: '', verificado: false, comentario: '', opcional: false },
