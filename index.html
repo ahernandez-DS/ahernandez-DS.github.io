@@ -157,8 +157,12 @@
                 <!-- Consulta de Buró -->
                 <div class="buro-panel">
                   <div class="buro-header">
-                    <span class="buro-title">🔍 Consulta de Buró de Crédito</span>
-                    <span class="buro-badge buro-autorizado">AUTORIZADO</span>
+                    <span class="buro-title">🔍 Consulta de Buró de Crédito — Cliente</span>
+                    <button class="btn-historial" onclick="toggleHistorialBuro('historialBuroCliente')">📋 Ver
+                      Historial</button>
+                    <button class="btn-historial"
+                      onclick="alert('Ver documento de consulta de buro y/o circulo de credito del aval')">🔎 Ver
+                      Consulta</button>
                   </div>
                   <div class="buro-details">
                     <div class="buro-item">
@@ -172,6 +176,40 @@
                     <div class="buro-item">
                       <span class="buro-label">Resultado</span>
                       <span class="buro-value buro-text-ok">Sin atrasos significativos</span>
+                    </div>
+                  </div>
+                  <div class="buro-historial" id="historialBuroCliente" style="display:none;">
+                    <div class="buro-historial-titulo">Historial de Versiones — Buró</div>
+                    <div class="hc-table-wrap" style="margin-top:10px;">
+                      <table class="hc-table">
+                        <thead>
+                          <tr>
+                            <th>Versión</th>
+                            <th>Fecha Consulta</th>
+                            <th>Score</th>
+                            <th>Resultado</th>
+                            <th>Usuario</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>V1</td>
+                            <td>01/06/2026</td>
+                            <td>695</td>
+                            <td><span class="buro-badge buro-autorizado"
+                                style="font-size:10px; padding:3px 8px;">AUTORIZADO</span></td>
+                            <td>J. SOLORZANO</td>
+                          </tr>
+                          <tr>
+                            <td>V2</td>
+                            <td>15/07/2026</td>
+                            <td>710</td>
+                            <td><span class="buro-badge buro-autorizado"
+                                style="font-size:10px; padding:3px 8px;">AUTORIZADO</span></td>
+                            <td>J. SOLORZANO</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
