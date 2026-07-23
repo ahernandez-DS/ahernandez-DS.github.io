@@ -354,6 +354,52 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('botonVerConsultaPLD').disabled = false;
   };
 
+  window.consultarListasNegrasAval1 = async function () {
+    const statusListasNegras = document.getElementById('statusListasNegrasAval1');
+    const statusOFAC = document.getElementById('statusOFACAval1');
+    const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval1');
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+
+    await sleep(2000);
+    statusListasNegras.textContent = '✔️ Sin coincidencia';
+
+    await sleep(2000);
+    statusOFAC.textContent = '✔️ Sin coincidencia';
+
+    await sleep(2000);
+    statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+    document.getElementById('botonVerConsultaPLDAval1').disabled = false;
+  };
+
+  window.consultarListasNegrasAval2 = async function () {
+    const statusListasNegras = document.getElementById('statusListasNegrasAval2');
+    const statusOFAC = document.getElementById('statusOFACAval2');
+    const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval2');
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+
+    await sleep(2000);
+    statusListasNegras.textContent = '✔️ Sin coincidencia';
+
+    await sleep(2000);
+    statusOFAC.textContent = '✔️ Sin coincidencia';
+
+    await sleep(2000);
+    statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+    document.getElementById('botonVerConsultaPLDAval2').disabled = false;
+  };
+
 
 
   /* ---------------------------------------------------------
