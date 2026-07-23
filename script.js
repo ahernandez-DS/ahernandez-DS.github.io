@@ -331,6 +331,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (comentarios) comentarios.readOnly = true;
   };
 
+  window.consultarListasNegras = async function () {
+    const statusListasNegras = document.getElementById('statusListasNegras');
+    const statusOFAC = document.getElementById('statusOFAC');
+    const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadas');
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+
+    await sleep(2000);
+    statusListasNegras.textContent = '✔️ Sin coincidencia';
+
+    await sleep(2000);
+    statusOFAC.textContent = '✔️ Sin coincidencia';
+
+    await sleep(2000);
+    statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+    document.getElementById('botonVerConsultaPLD').disabled = false;
+  };
+
 
 
   /* ---------------------------------------------------------

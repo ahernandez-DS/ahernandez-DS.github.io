@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>C-MOVIL · Mesa de Control</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
     .switch-unico {
@@ -71,7 +72,7 @@
       </div>
       <div class="topbar-right">
         <button class="pill pill-primary" onclick="alert('Visualizando Solicitud...')">
-          <span class="pill-icon">👁️</span> Ver Solicitud de Crédito
+          <span class="pill-icon"><i class="fa fa-eye"></i></span> Ver Solicitud de Crédito
         </button>
         <button class="pill pill-ghost">💬 Comentarios</button>
         <span class="user-chip">👤 1 Usuario</span>
@@ -218,16 +219,27 @@
                 <div class="listas-panel">
                   <div class="listas-header">
                     <span class="listas-title">🛡️ Coincidencia en Listas Negras</span>
-                    <span class="listas-badge listas-sin-coincidencia">SIN COINCIDENCIA</span>
+                    <button class="btn-historial" onclick="consultarListasNegras()">
+                      <i class="fa fa-search" aria-hidden="true"></i> Consultar
+                    </button>
+                    <button class="btn-historial" id="botonVerConsultaPLD"
+                      onclick="alert('Ver documento de consulta de listas negras, ofac y/o personas bloqueadas')"
+                      disabled>
+                      <i class="fa fa-file" aria-hidden="true"></i> Ver Consulta
+                    </button>
                   </div>
                   <div class="listas-details">
                     <div class="listas-item">
-                      <span class="listas-label">SAFI / LISTAS NEGRAS</span>
-                      <span class="listas-value listas-ok">✓ Sin coincidencia detectada</span>
+                      <span class="listas-label">LISTAS NEGRAS</span>
+                      <span class="listas-value listas-ok" id="statusListasNegras">➖ Sin consulta</span>
                     </div>
                     <div class="listas-item">
-                      <span class="listas-label">PLD / OFAC</span>
-                      <span class="listas-value listas-ok">✓ Sin coincidencia detectada</span>
+                      <span class="listas-label">OFAC</span>
+                      <span class="listas-value listas-ok" id="statusOFAC">➖ Sin consulta</span>
+                    </div>
+                    <div class="listas-item">
+                      <span class="listas-label">PERSONAS BLOQUEADAS</span>
+                      <span class="listas-value listas-ok" id="statusPersonasBloqueadas">➖ Sin consulta</span>
                     </div>
                   </div>
                 </div>
