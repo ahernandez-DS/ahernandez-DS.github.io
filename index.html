@@ -87,7 +87,10 @@
 
     <!-- ============ TABS PRINCIPALES ============ -->
     <nav class="tabs" id="mainTabsContainer">
-      <button class="tab active" id="tabRegistroClientes" onclick="mostrarRegistroClientes()">Informacion
+      <button class="tab active" id="tabInformacionGeneral" onclick="mostrarVistaGeneral()">
+        Vista General de Prospectos
+      </button>
+      <button class="tab" id="tabRegistroClientes" onclick="mostrarRegistroClientes()">Informacion
         General</button>
       <button class="tab" id="tabMesaControl" onclick="mostrarMesaControlTab()">Asociaciones</button>
     </nav>
@@ -97,6 +100,25 @@
 
       <!-- ===== MAIN CONTENT ===== -->
       <main class="content">
+        <div id="vistaGeneral">
+          <table class="hc-table">
+            <thead>
+              <tr>
+                <th>FOLIO</th>
+                <th>NOMBRE PROSPECTO</th>
+                <th>PRODUCTO</th>
+                <th>DIRECTOR REGIONAL</th>
+                <th>SUCURSAL</th>
+                <th>EJECUTIVO/CREADO POR</th>
+                <th>MODALIDAD</th>
+                <th>ANALISTA</th>
+              </tr>
+            </thead>
+            <tbody id="vistaGeneralTableBody" style="background-color: rgb(71, 95, 117)">
+
+            </tbody>
+          </table>
+        </div>
 
         <!-- ================================================================ -->
         <!--  VISTA: REGISTRO DE CLIENTES                                      -->
@@ -234,12 +256,16 @@
                       <span class="listas-value listas-ok" id="statusListasNegras">➖ Sin consulta</span>
                     </div>
                     <div class="listas-item">
-                      <span class="listas-label">OFAC</span>
+                      <span class="listas-label">LISTAS INTERNAS</span>
                       <span class="listas-value listas-ok" id="statusOFAC">➖ Sin consulta</span>
                     </div>
                     <div class="listas-item">
-                      <span class="listas-label">PERSONAS BLOQUEADAS</span>
+                      <span class="listas-label">LISTA PERSONAS BLOQUEADAS</span>
                       <span class="listas-value listas-ok" id="statusPersonasBloqueadas">➖ Sin consulta</span>
+                    </div>
+                    <div class="listas-item">
+                      <span class="listas-label">LISTA DREM</span>
+                      <span class="listas-value listas-ok" id="statusDrem">➖ Sin consulta</span>
                     </div>
                   </div>
                 </div>
@@ -476,12 +502,16 @@
                       <span class="listas-value listas-ok" id="statusListasNegrasAval1">➖ Sin consulta</span>
                     </div>
                     <div class="listas-item">
-                      <span class="listas-label">OFAC</span>
+                      <span class="listas-label">LISTAS INTERNAS</span>
                       <span class="listas-value listas-ok" id="statusOFACAval1">➖ Sin consulta</span>
                     </div>
                     <div class="listas-item">
-                      <span class="listas-label">PERSONAS BLOQUEADAS</span>
+                      <span class="listas-label">LISTA PERSONAS BLOQUEADAS</span>
                       <span class="listas-value listas-ok" id="statusPersonasBloqueadasAval1">➖ Sin consulta</span>
+                    </div>
+                    <div class="listas-item">
+                      <span class="listas-label">LISTAS DREM</span>
+                      <span class="listas-value listas-ok" id="statusDremAval1">➖ Sin consulta</span>
                     </div>
                   </div>
                 </div>
@@ -603,12 +633,16 @@
                     <span class="listas-value listas-ok" id="statusListasNegrasAval2">➖ Sin consulta</span>
                   </div>
                   <div class="listas-item">
-                    <span class="listas-label">OFAC</span>
+                    <span class="listas-label">LISTAS INTERNAS</span>
                     <span class="listas-value listas-ok" id="statusOFACAval2">➖ Sin consulta</span>
                   </div>
                   <div class="listas-item">
-                    <span class="listas-label">PERSONAS BLOQUEADAS</span>
+                    <span class="listas-label">LISTA PERSONAS BLOQUEADAS</span>
                     <span class="listas-value listas-ok" id="statusPersonasBloqueadasAval2">➖ Sin consulta</span>
+                  </div>
+                  <div class="listas-item">
+                    <span class="listas-label">LISTAS DREM</span>
+                    <span class="listas-value listas-ok" id="statusDremAval2">➖ Sin consulta</span>
                   </div>
                 </div>
               </div>
@@ -823,7 +857,7 @@
             <section class="card" style="width: 100%; height: fit-content;">
               <div class="card-body" style="padding: 16px 20px;">
                 <div>
-                  <div style="display: flex; justify-content: space-between;">
+                  <!-- <div style="display: flex; justify-content: space-between;">
                     <span class="mc-stat-label"
                       style="font-size: 18px; color:white; font-weight: bold;">Solicitados:</span>
                     <span class="mc-stat-value">30</span>
@@ -840,7 +874,7 @@
                       style="font-size: 18px; color:white; font-weight: bold;">Verificados:</span>
                     <span class="mc-stat-value">14</span>
                   </div>
-                  <br>
+                  <br> -->
                   <!-- <div style="display: flex; justify-content: space-between;">
                     <span class="mc-stat-label" style="font-size: 18px; color:white; font-weight: bold;">Firmas
                       cotejadas</span>

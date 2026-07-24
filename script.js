@@ -5,6 +5,45 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------------------------------------------------------
+     0. DATOS DE PROSPECTOS (Vista General)
+  --------------------------------------------------------- */
+  const PROSPECTOS_DATA = [
+    { folio: '10177', nombre: 'ANA GLORIA PIÑA AGUILAR', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'OAXACA', ejecutivo: 'MARIA LOPEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
+    { folio: '10178', nombre: 'CARLOS RUIZ MARTINEZ', producto: 'C-AUTO', director: 'JUAN PEREZ', sucursal: 'OAXACA', ejecutivo: 'MARIA LOPEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
+    { folio: '10179', nombre: 'LAURA SANCHEZ VILLA', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'PUEBLA', ejecutivo: 'LUIS FERNANDEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
+    { folio: '10180', nombre: 'MIGUEL ANGEL FLORES', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'PUEBLA', ejecutivo: 'LUIS FERNANDEZ', modalidad: 'SUCURSAL', analista: 'ANA HERNANDEZ' },
+    { folio: '10181', nombre: 'SOFIA RAMIREZ CRUZ', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'VERACRUZ', ejecutivo: 'JOSE DIAZ', modalidad: 'SUCURSAL', analista: 'ANA HERNANDEZ' },
+    { folio: '10182', nombre: 'ROBERTO HERRERA LARA', producto: 'C-AUTO', director: 'ALBERTO GOMEZ', sucursal: 'CDMX SUR', ejecutivo: 'DISTRIBUIDOR 1', modalidad: 'DISTRIBUIDOR', analista: 'ANA HERNANDEZ' },
+    { folio: '10183', nombre: 'CARMEN LUNA PEREZ', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX SUR', ejecutivo: 'DISTRIBUIDOR 1', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
+    { folio: '10184', nombre: 'JORGE ORTEGA SALINAS', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX NORTE', ejecutivo: 'DISTRIBUIDOR 2', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
+    { folio: '10185', nombre: 'PATRICIA REYES VACA', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX NORTE', ejecutivo: 'DISTRIBUIDOR 2', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
+    { folio: '10186', nombre: 'EDUARDO VARGAS PINO', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'TOLUCA', ejecutivo: 'DISTRIBUIDOR 3', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' }
+  ];
+
+  function renderVistaGeneral() {
+    const tbody = document.getElementById('vistaGeneralTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    PROSPECTOS_DATA.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${p.folio}</strong></td>
+        <td>${p.nombre}</td>
+        <td>${p.producto}</td>
+        <td>${p.director}</td>
+        <td>${p.sucursal}</td>
+        <td>${p.ejecutivo}</td>
+        <td>${p.modalidad}</td>
+        <td>${p.analista}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  renderVistaGeneral();
+
+  /* ---------------------------------------------------------
      1. DATOS DE PAGOS (para vista parcial en Registro de Clientes)
   --------------------------------------------------------- */
   const PAGOS_DATA = [
@@ -236,28 +275,58 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------------------------------------------------
      8. TABS PRINCIPALES — Registro de Clientes / Mesa de Control
   --------------------------------------------------------- */
-  window.mostrarRegistroClientes = function () {
+  window.mostrarVistaGeneral = function () {
+    const vistaVG = document.getElementById('vistaGeneral');
     const vistaRC = document.getElementById('vistaRegistroClientes');
     const vistaMC = document.getElementById('vistaMesaControl');
+
+    const tabVG = document.getElementById('tabInformacionGeneral');
     const tabRC = document.getElementById('tabRegistroClientes');
     const tabMC = document.getElementById('tabMesaControl');
 
+    if (vistaVG) vistaVG.style.display = 'block';
+    if (vistaRC) vistaRC.style.display = 'none';
+    if (vistaMC) vistaMC.style.display = 'none';
+
+    if (tabVG) tabVG.classList.add('active');
+    if (tabRC) tabRC.classList.remove('active');
+    if (tabMC) tabMC.classList.remove('active');
+  };
+
+  window.mostrarRegistroClientes = function () {
+    const vistaVG = document.getElementById('vistaGeneral');
+    const vistaRC = document.getElementById('vistaRegistroClientes');
+    const vistaMC = document.getElementById('vistaMesaControl');
+
+    const tabVG = document.getElementById('tabInformacionGeneral');
+    const tabRC = document.getElementById('tabRegistroClientes');
+    const tabMC = document.getElementById('tabMesaControl');
+
+    if (vistaVG) vistaVG.style.display = 'none';
     if (vistaRC) vistaRC.style.display = 'block';
     if (vistaMC) vistaMC.style.display = 'none';
+
+    if (tabVG) tabVG.classList.remove('active');
     if (tabRC) tabRC.classList.add('active');
     if (tabMC) tabMC.classList.remove('active');
   };
 
   window.mostrarMesaControlTab = function () {
+    const vistaVG = document.getElementById('vistaGeneral');
     const vistaRC = document.getElementById('vistaRegistroClientes');
     const vistaMC = document.getElementById('vistaMesaControl');
+
+    const tabVG = document.getElementById('tabInformacionGeneral');
     const tabRC = document.getElementById('tabRegistroClientes');
     const tabMC = document.getElementById('tabMesaControl');
 
+    if (vistaVG) vistaVG.style.display = 'none';
     if (vistaRC) vistaRC.style.display = 'none';
     if (vistaMC) vistaMC.style.display = 'block';
-    if (tabMC) tabMC.classList.add('active');
+
+    if (tabVG) tabVG.classList.remove('active');
     if (tabRC) tabRC.classList.remove('active');
+    if (tabMC) tabMC.classList.add('active');
 
     renderTodosDocumentosMC();
   };
@@ -335,12 +404,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusListasNegras = document.getElementById('statusListasNegras');
     const statusOFAC = document.getElementById('statusOFAC');
     const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadas');
+    const statusDrem = document.getElementById('statusDrem');
 
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
     statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
     statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
 
     await sleep(2000);
     statusListasNegras.textContent = '✔️ Sin coincidencia';
@@ -350,6 +421,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await sleep(2000);
     statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+    await sleep(2000);
+    statusDrem.textContent = '✔️ Sin coincidencia';
 
     document.getElementById('botonVerConsultaPLD').disabled = false;
   };
@@ -358,12 +432,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusListasNegras = document.getElementById('statusListasNegrasAval1');
     const statusOFAC = document.getElementById('statusOFACAval1');
     const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval1');
+    const statusDrem = document.getElementById('statusDremAval1');
 
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
     statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
     statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
 
     await sleep(2000);
     statusListasNegras.textContent = '✔️ Sin coincidencia';
@@ -373,6 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await sleep(2000);
     statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+    await sleep(2000);
+    statusDrem.textContent = '✔️ Sin coincidencia';
 
     document.getElementById('botonVerConsultaPLDAval1').disabled = false;
   };
@@ -381,12 +460,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusListasNegras = document.getElementById('statusListasNegrasAval2');
     const statusOFAC = document.getElementById('statusOFACAval2');
     const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval2');
+    const statusDrem = document.getElementById('statusDremAval2');
 
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
     statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
     statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+    statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
 
     await sleep(2000);
     statusListasNegras.textContent = '✔️ Sin coincidencia';
@@ -396,6 +477,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await sleep(2000);
     statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+    await sleep(2000);
+    statusDrem.textContent = '✔️ Sin coincidencia';
 
     document.getElementById('botonVerConsultaPLDAval2').disabled = false;
   };
@@ -464,8 +548,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------------------------------------------------
      13. INICIALIZACIÓN
   --------------------------------------------------------- */
-  // Mostrar Registro de Clientes por defecto
-  mostrarRegistroClientes();
+  // Mostrar Vista General por defecto
+  mostrarVistaGeneral();
 
 });
 
